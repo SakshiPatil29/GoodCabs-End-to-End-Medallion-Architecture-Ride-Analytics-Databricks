@@ -17,7 +17,7 @@ GoodCabs is a fictional multi-city cab company operating across 11 Indian cities
 
 ## 🏗️ Architecture
 
-![Architecture Diagram](architecture/architecture.png)
+![Architecture Diagram](other_files/architecture.png)
 
 **Data Flow:**
 
@@ -78,11 +78,9 @@ Clean fact and dimension tables are joined into a single, reporting-ready **star
 
 ```
 goodcabs-medallion-analytics/
-├── architecture/
-│   └── architecture.png
-├── data/
+├── 1. data/
 │   └── (sample source data)
-├── codes/
+├── 2. codes/
 │   ├── bronze/
 │   │   ├── city.py
 │   │   └── trips.py
@@ -103,7 +101,8 @@ goodcabs-medallion-analytics/
 │           ├── trips_surat.sql
 │           ├── trips_vadodara.sql
 │           └── trips_visakhapatnam.sql
-├── other_files/
+├── 3. other_files/
+│   └── architecture.png
 └── README.md
 ```
 
@@ -115,7 +114,7 @@ goodcabs-medallion-analytics/
 2. In Databricks: **Workspace → Repos → Add Repo**, and connect this GitHub repository.
 3. Set up an **External Location** and **Storage Credential** in Unity Catalog pointing to your own S3 bucket.
 4. Update `SOURCE_PATH` in `bronze/city.py` and `bronze/trips.py` to point to your own S3 bucket path.
-5. Create a new **Lakeflow Declarative Pipeline** in Databricks, pointing to the `codes/bronze` and `codes/silver` folders as source.
+5. Create a new **Lakeflow Declarative Pipeline** in Databricks, pointing to the `2. codes/bronze` and `2. codes/silver` folders as source.
 6. Run the pipeline — Bronze, Silver, and Gold tables will be created automatically under the `transportation` catalog.
 7. Build a Dashboard or connect Genie on top of `transportation.gold.fact_trips` to start querying.
 
